@@ -18,3 +18,14 @@ class Token:
 
     def __str__(self):
         return f"{{ value: '{self.value}', type: {self.type.value} }}"
+
+def getSourceCode() -> str:
+    res = ''
+    try:
+        with open("../test/source_code.txt", "r") as file:
+            res = file.read()
+    except FileNotFoundError:
+        print('File not found')
+    except Exception as e:
+        print(f"An error occured: {e}")
+    return res
