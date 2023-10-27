@@ -19,6 +19,16 @@ class Token:
     def __str__(self):
         return f"{{ value: '{self.value}', type: {self.type.value} }}"
 
+def tokenize(sourceCode: str) -> list[Token]:
+    tokens = deque([])
+    src = deque(list(sourceCode))
+
+    while len(src) > 0:
+        if src[0] == '(':
+            tokens.append(Token(src.popleft(), TokenType.OpenParen))
+    
+    return list(tokens) 
+
 def getSourceCode() -> str:
     res = ''
     try:
@@ -29,3 +39,7 @@ def getSourceCode() -> str:
     except Exception as e:
         print(f"An error occured: {e}")
     return res
+
+tokens = tokenize(getSourceCode())
+for token in tokens:
+    print(token)
