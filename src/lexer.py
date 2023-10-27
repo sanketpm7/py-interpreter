@@ -1,14 +1,15 @@
+import json
 from enum import Enum
-
+from collections import deque
 class TokenType(Enum):
-    Number = 1
-    Identifie = 2
-    Let = 3
-    OpenParen = 4
-    CloseParen = 5
-    Equals = 6
-    BinaryOperato = 7
-    EOF = 8
+    Number          = 0
+    Identifier      = 1
+    Let             = 2
+    OpenParen       = 3
+    CloseParen      = 4
+    Equals          = 5
+    BinaryOperator  = 6
+    EOF             = 7
 
 class Token:
     def __init__(self, value: str, type: TokenType):
@@ -16,5 +17,4 @@ class Token:
         self.type = type
 
     def __str__(self):
-        return f"{{ {self.value} : {self.type} }}"
-
+        return f"{{ value: '{self.value}', type: {self.type.value} }}"
